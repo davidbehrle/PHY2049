@@ -1,0 +1,125 @@
+\documentclass[a4paper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{framed}
+\usepackage{xfrac}
+\usepackage[most]{tcolorbox}
+\usepackage{fix-cm}
+\usepackage{cancel}
+\usepackage{pagecolor}
+\usepackage[margin=0.5in]{geometry}
+\usetikzlibrary{quotes,angles}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{calc}
+\usetikzlibrary{external}
+\tikzexternalize[prefix=tikz/ch2figures/]
+\usepgfplotslibrary{fillbetween}
+
+\let\phi\varphi
+\let\bf\textbf
+\let\la\langle
+\let\ra\rangle
+\pgfplotsset{compat=1.18}
+\newcommand\der[2]{\frac{d #1}{d #2}}
+\newcommand\Deltat{\Delta t}
+\newcommand\rads{\text{ rad\;s}^{-1}}
+\newcommand\radss{\text{ rad\;s}^{-2}}
+\newcommand\rad{\text{ rad}}
+\newcommand\s{\text{ s}}
+\newcommand\m{\text{ m}}
+\newcommand\km{\text{ km}}
+\newcommand\J{\text{ J}}
+\newcommand\Nm{\text{ Nm}}
+\newcommand\ms{\text{ ms}^{-1}}
+\newcommand\mss{\text{ ms}^{-2}}
+\newcommand\kg{\text{ kg}}
+\newcommand\kgms{\text{ kg\;ms}^{-1}}
+\newcommand\kgmm{\text{ kg\;m}^{2}}
+\newcommand\kgmms{\text{ kg\;m}^2\text{s}^{-1}}
+\newcommand{\ih}{\hat{\imath}}
+\newcommand{\jh}{\hat{\jmath}}
+\newcommand{\AxisRotator}[1][rotate=0]{%
+    \tikz [x=0.25cm,y=0.60cm,line width=.2ex,-stealth,#1] \draw (0,0) arc (-150:150:1 and 1);%
+}
+\def\centerarc[#1](#2)(#3:#4:#5){\draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5)}
+% Syntax: \centerarc[draw options] (center) (initial angle:final angle:radius);
+
+\title{Electric Charge, Force, \& Field}
+\author{Essential University Physics Vol. 2, 4e.}
+\date{}
+
+\definecolor{fg0}{HTML}{fbf1c7}
+
+\makeatletter % change only the display of \thepage, but not \thepage itself:
+\patchcmd{\ps@plain}{\thepage}{\textcolor{fg1}{\thepage}}{}{}
+\makeatother
+
+\begin{document}
+\pagestyle{plain}
+
+\definecolor{bg0}{HTML}{282828}
+\definecolor{bg0_h}{HTML}{1d2021}
+\definecolor{bg0_s}{HTML}{32302f}
+\definecolor{bg1}{HTML}{3c3836}
+\definecolor{bg2}{HTML}{504945}
+\definecolor{bg3}{HTML}{665c54}
+\definecolor{bg4}{HTML}{7c6f64}
+\definecolor{fg1}{HTML}{ebdbb2}
+\definecolor{fg2}{HTML}{d5c4a1}
+\definecolor{fg3}{HTML}{bdae93}
+\definecolor{fg4}{HTML}{a89984}
+\definecolor{gbaqua}{HTML}{8ec07c}
+\definecolor{gbaqua2}{HTML}{689d6a}
+\definecolor{gbred}{HTML}{fb4934}
+\definecolor{gbred2}{HTML}{cc241d}
+\definecolor{gbgreen}{HTML}{b8bb26}
+\definecolor{gbgreen2}{HTML}{98971a}
+\definecolor{gbyellow}{HTML}{fabd2f}
+\definecolor{gbyellow2}{HTML}{d79921}
+\definecolor{gbblue}{HTML}{83a598}
+\definecolor{gbblue2}{HTML}{458588}
+\definecolor{gbpurple}{HTML}{d3869b}
+\definecolor{gbpurple2}{HTML}{b16286}
+\definecolor{gborange}{HTML}{fe8019}
+\definecolor{gborange2}{HTML}{d65d0e}
+\definecolor{gbgray}{HTML}{a89984}
+\definecolor{gbgray2}{HTML}{928374}
+\color{fg0}
+\pagecolor{bg0_s}
+\colorlet{shadecolor}{gbaqua2}
+
+\setcounter{section}{20}
+\maketitle
+
+\subsection{Electric Charge}
+Electric charge is an intrinsic property of protons and electrons and comes in two varieties, \textit{positive} and \textit{negative}. These names are useful as the total charge (net charge) of an object is the algebraic sum of its constituent charges. Like charges repel, opposite charges attract, this constitutes a qualitative description of the electric force.
+\vspace{1mm}\\
+\bf{Quantities of Charge}
+\vspace{1mm}\\
+All electrons carry the same charge, as do all protons. The charge of a proton is \textit{exactly} the same magnitude as the electron's but with opposite sign. The magnitude of the electron or proton charge is the elementary charge $e$, and is quantized. Elementary particle theories show that the fundamental charge is actually $\frac{1}{3}e$ and resides on quarks, the building blocks of protons and neutrons among other particles. Quarks always join together to form particles with integer multiples of the full elementary charge $e$, and it seems impossible to isolate individual quarks.
+\vspace{1mm}\\
+The SI unit of charge is the coulomb (C), named after the French physicist Charles Augustin de Coulomb. From the late 19\textsuperscript{th} to early 21\textsuperscript{st} century, the coulomb was defined in terms of electric current and time, a definition that was difficult to implement. The 2019 revision of the SI defined the coulomb more simply by defining the elementary charge as $e = 1.602176634 \times 10^{-19}$ C. The coulomb is therefore the number of elementary charges equal to the inverse of this number: C $\approx 6.24 \times 10^{19}\ e$.
+\vspace{1mm}\\
+\bf{Charge Conservation}
+\vspace{1mm}\\
+Electric charge is a conserved quantity, the net charge in a closed region remains constant. Charged particles may be created or annihilated, but always in pairs of equal and opposite charge. The net charge is always the same.
+\subsection{Coulomb's Law}
+Attraction and repulsion of electric charges implies a force. Joseph Priestley and Charles Augustin de Coulomb investigated this force in the late 1700s and found that the force between two charges acts along the line joining them, with the magnitude proportional to the product of the charges and inversely proportional to the square of the distance between them. Coulomb's law summarizes these results:
+\begin{equation}
+    \vec{F}_{12} = \frac{kq_1q_2}{r^2}\hat{r}
+\end{equation}
+where $\vec{F}_{12}$ is the force charge $q_1$ exerts on $q_2$ and $r$ is the distance between the charges. In SI, the proportionality constant $k$ has the approximate value $9 \times 10^9 \text{N}\; \text{m}^2/\text{C}^2$
+
+\end{document}
