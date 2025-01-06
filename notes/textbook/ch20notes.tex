@@ -121,5 +121,39 @@ Attraction and repulsion of electric charges implies a force. Joseph Priestley a
     \vec{F}_{12} = \frac{kq_1q_2}{r^2}\hat{r}
 \end{equation}
 where $\vec{F}_{12}$ is the force charge $q_1$ exerts on $q_2$ and $r$ is the distance between the charges. In SI, the proportionality constant $k$ has the approximate value $9 \times 10^9 \text{N}\; \text{m}^2/\text{C}^2$. Force is a vector, and $\hat{r}$ is a unit vector that helps determine its direction, pointing \textit{from} $q_1$ \textit{toward} $q_2$. Reversing the roles of $q_1$ and $q_2$, $\vec{F}_{21}$ has the same magnitude as $\vec{F}_{12}$ but the opposite direction, thus Coulomb's law obeys Newton's third law. The force is in the same direction as the unit vector when the charges have the same sign, and opposite the unit vector when the charges have opposite signs, accounting for the fact that like charges repel and opposite charges attract.
+\begin{center}
+    \begin{tikzpicture}
+        \draw[->,very thick,-latex,gbblue2] (1,0.9)--node[below,color=fg1]{$\vec{F}_{12}$} (3,0.9);
+        \draw[->,very thick,-latex,gbaqua2] (1,1.1)--node[above,color=fg1]{$\hat{r}$}(2,1.1);
+        \filldraw[gbblue] (-1,1) circle (0.15);
+        \filldraw[gbblue] (1,1) circle (0.15);
+        \draw[thin] (-0.9,1)--(-1.1,1);
+        \draw[thin] (-1,1.1)--(-1,0.9);
+        \draw[thin] (0.9,1)--(1.1,1);
+        \draw[thin] (1,1.1)--(1,0.9);
+        \draw[thick] (-1,1) circle (0.15);
+        \draw[thick] (1,1) circle (0.15);
+        \draw[thick] (-1,0.75)--(-1,0);
+        \draw[thick] (1,0.75)--(1,0);
+        \draw[thick] (-1,0.1)--node[fill=bg0_s]{$r$} (1,0.1);
+        \node at (0,-0.5) {(a)};
+    \end{tikzpicture}
+    \hspace{15mm}
+    \begin{tikzpicture}
+        \draw[->,very thick,-latex,gbblue2] (1,1)--node[above,color=fg1]{$\vec{F}_{12}$} (-0.85,1);
+        \draw[->,very thick,-latex,gbaqua2] (1,1)--node[above,color=fg1]{$\hat{r}$}(2,1);
+        \filldraw[gbblue] (-1,1) circle (0.15);
+        \filldraw[gbred] (1,1) circle (0.15);
+        \draw[thin] (-0.9,1)--(-1.1,1);
+        \draw[thin] (-1,1.1)--(-1,0.9);
+        \draw[thin] (0.9,1)--(1.1,1);
+        \draw[thick] (-1,1) circle (0.15);
+        \draw[thick] (1,1) circle (0.15);
+        \draw[thick] (-1,0.75)--(-1,0);
+        \draw[thick] (1,0.75)--(1,0);
+        \draw[thick] (-1,0.1)--node[fill=bg0_s]{$r$} (1,0.1);
+        \node at (0,-0.5) {(b)};
+    \end{tikzpicture}
+\end{center}
 
 \end{document}
