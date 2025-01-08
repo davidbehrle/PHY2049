@@ -155,5 +155,82 @@ where $\vec{F}_{12}$ is the force charge $q_1$ exerts on $q_2$ and $r$ is the di
         \node at (0,-0.5) {(b)};
     \end{tikzpicture}
 \end{center}
+\bf{Point Charges \& the Superposition Principle}
+\vspace{1mm}\\
+Coulomb's law is only strictly true for point charges (charged objects of negligible size) which electrons and protons can be usually be treated as. Any two charged objects can also be considered as such if the distance between them is large compared to their size. Often the electric effects of charge distributions - arrangements of charge spread over space - are more interesting. To find the electric effect of such charge distributions, the effects of two or more charges must be combined.
+\begin{center}
+    \begin{tikzpicture}[scale=1.5]
+        \draw[->,ultra thick,-latex,gbblue2] (0,0)--node[below,color=fg1]{$\vec{F}_{13}$}(1,0);
+        \draw[->,ultra thick,-latex,gbblue2] (0,0)--node[right,color=fg1]{$\vec{F}_{\text{net}} = \vec{F}_{13} + \vec{F}_{23}$}({cos(60)},{sin(60)});
+        \draw[->,ultra thick,-latex,gbblue2] (0,0)--node[left,color=fg1]{$\vec{F}_{23}$}({-cos(60)},{sin(60)});
+        \filldraw[gbblue] (0,0) circle (0.1);
+        \draw[thick] (0,0) circle (0.1);
+        \node[below] at (0,-0.1){$q_3$};
+        \draw[thin] (0,-0.075)--(0,0.075);
+        \draw[thin] (-0.075,0)--(0.075,0);
+        \filldraw[gbred] ({-1.5*cos(60)},{1.5*sin(60)}) circle (0.1);
+        \draw[thin] ({-1.5*cos(60) - 0.075},{1.5*sin(60)})--({-1.5*cos(60) + 0.075},{1.5*sin(60)});
+        \draw[thick] ({-1.5*cos(60)},{1.5*sin(60)}) circle (0.1);
+        \node[below] at ({-1.5*cos(60)},{1.5*sin(60) - 0.1}){$q_2$};
+        \filldraw[gbblue] (-1,0) circle (0.1);
+        \draw[thin] (-1.075,0)--(-0.925,0);
+        \draw[thin] (-1,0.075)--(-1,-0.075);
+        \node[below] at (-1,-0.1){$q_1$};
+        \draw[thick] (-1,0) circle (0.1);
+    \end{tikzpicture}
+\end{center}
+The figure shows two charges $q_1$ and $q_2$ constituting a simple charge distribution. To calculate the net force these exert on a third charge $q_3$, calculate the forces $\vec{F}_{13}$ and $\vec{F}_{23}$ and add the two vectors. The force $q_1$ exerts on $q_3$ is unaffected by the presence pf $q_2$ and vice versa. Coulomb's law can be applied separately to the pairs $q_1q_3$ and $q_2q_3$ and the results combined. This fact - that electric forces add vectorially - is called the superposition principle.
+\subsection{The Electric Field}
+The gravitational field at a point is defined as the gravitational force per unit mass that an object at that point would experience. In this context, $\vec{g}$ can be thought of as the force per unit mass that any object would experience due to gravity. The gravitational field can be pictured as a continuous set of vectors that give the magnitude and direction of the gravitational force per unit mass at each point. The same can be done with the electric force, defining the electric field as the force per unit charge:
+\begin{equation}
+    \vec{E} = \frac{\vec{F}}{q}
+\end{equation}
+This equation can be used as a prescription for measuring electric fields. Place a point charge at some location, measure the electric force it experiencesm and divide by the change to get the field.
+\begin{center}
+    \begin{tikzpicture}[scale=1.5]
+        \draw[thick] (0,0)--(2,0);
+        \node[right] at (2,0.8){$\vec{g}$};
+        \node at (0,-1.125){};
+        \foreach \i in {0.1,0.3,...,1.9}{
+            \draw[->,very thick,-latex,gbblue2] (\i,0.75)--(\i,0.1);
+            \draw[->,very thick,-latex,gbblue2] (\i,1.5)--(\i,0.85);
+            \filldraw (\i,0.75) circle (0.05);
+            \filldraw (\i,1.5) circle (0.05);
+        }
+    \end{tikzpicture}
+    \hspace{15mm}
+    \begin{tikzpicture}[scale=1.5]
+        \filldraw[gbblue] (0,0) circle (0.15);
+        \draw[thick] (0,0) circle (0.15);
+        \draw[thin] (-0.1,0)--(0.1,0);
+        \draw[thin] (0,-0.1)--(0,0.1);
+        \foreach \i in {22.5,67.5,112.5,...,337.5}{
+            \draw[->,very thick,-latex] ({0.5*cos(\i)},{0.5*sin(\i)})--({1.5*cos(\i)},{1.5*sin(\i)});
+            \filldraw ({0.5*cos(\i)},{0.5*sin(\i)}) circle (0.05);
+            \draw[->,very thick,-latex] ({1.6*cos(\i)},{1.6*sin(\i)})--({2.25*cos(\i)},{2.25*sin(\i)});
+            \filldraw ({1.6*cos(\i)},{1.6*sin(\i)}) circle (0.05);
+        };
+        \foreach \j in {0,45,90,...,315}{
+            \draw[->,very thick,-latex] ({0.35*cos(\j)},{0.35*sin(\j)})--({2.25*cos(\j)},{2.25*sin(\j)});
+            \filldraw ({0.35*cos(\j)},{0.35*sin(\j)}) circle (0.05);
+        }
+        \node at ({1.2*cos(58)},{1.2*sin(58)}){$\vec{E}_1$};
+        \node at ({1.9*cos(32)},{1.9*sin(32)}){$\vec{E}_2$};
+    \end{tikzpicture}
+\end{center}
+At the point at the tail of $\vec{E}_1$, the electric field is described by the vector $\vec{E}_1$ meaning a point charge $q$ placed there would experience an electric force $q\vec{E}_1$. Farther from the charge at the tail of $\vec{E}_2$, a point charge $q$ would experience a weaker force $q\vec{E}_2$.
+\vspace{1mm}\\
+If the electric field $\vec{E}$ at a point is known, equation 2 can be rearranged to find the force on any point charge $q$ placed at that point:
+\begin{equation*}
+    \vec{F} = q\vec{E}
+\end{equation*}
+If the charge $q$ is positive, the force is in the same direction as the field, if $q$ is negative, then the force is opposite to the direction of the field. The units of electric field are newtons per coulomb (N$\;$C$^{-1}$). Fields of hundreds or thousands of N$\;$C$^{-1}$ are common, while fields of 3 MN$\;$C$^{-1}$ will tear electrons from air molecules.
+\vspace{1mm}\\
+\bf{The Field of a Point Charge}
+\vspace{1mm}\\
+Once the field of a charge distribution is known, its effect on other charges can be calculated. Coulomb's law gives the force on a test charge $q_{\text{test}}$ located a distance $r$ from a point charge $q$: $\vec{F} = (\sfrac{kqq_{\text{test}}}{r^2})\hat{r}$, where $\hat{r}$ is a unit vector pointing away from $q$. The electric field arising from $q$ is the force per unit charge, or:
+\begin{equation}
+    \vec{E} = \frac{\vec{F}}{q_{\text{test}}} = \frac{kq}{r^2}\hat{r}
+\end{equation}
 
 \end{document}
