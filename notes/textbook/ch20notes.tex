@@ -232,5 +232,23 @@ Once the field of a charge distribution is known, its effect on other charges ca
 \begin{equation}
     \vec{E} = \frac{\vec{F}}{q_{\text{test}}} = \frac{kq}{r^2}\hat{r}
 \end{equation}
+Because of its similarity, this equation is also referred to as Coulomb's law. The equation contains no reference to the test charge $q_{\text{test}}$ because the field of $q$ exists independently of any other charge. Since $\hat{r}$ always points away from $q$, the direction of $\vec{E}$ is radially outward if $q$ is positive and radially inward if $q$ is negative.
+\begin{center}
+    \begin{tikzpicture}
+        \filldraw[gbred] (0,0) circle (0.1);
+        \draw[thick] (0,0) circle (0.1);
+        \draw[thin] (-0.07,0)--(0.07,0);
+        \foreach \i in {0,45,90,...,315}{
+            \draw[->,very thick,-latex] ({cos(\i)},{sin(\i)})--({0.2*cos(\i)},{0.2*sin(\i)});
+            \draw[->,very thick,-latex] ({1.75*cos(\i)},{1.75*sin(\i)})--({1.1*cos(\i)},{1.1*sin(\i)});
+            \filldraw ({cos(\i)},{sin(\i)}) circle (0.05);
+            \filldraw ({1.75*cos(\i)},{1.75*sin(\i)}) circle (0.05);
+        }
+        \foreach \j in {22.5,67.5,112.5,...,337.5}{
+            \draw[->,very thick,-latex] ({1.6*cos(\j)},{1.6*sin(\j)})--({0.8*cos(\j)},{0.8*sin(\j)});
+            \filldraw ({1.6*cos(\j)},{1.6*sin(\j)}) circle (0.05);
+        }
+    \end{tikzpicture}
+\end{center}
 
 \end{document}
