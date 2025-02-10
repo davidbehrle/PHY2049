@@ -15,6 +15,7 @@
 \usepackage{pgfplots}
 \usepackage{framed}
 \usepackage{xfrac}
+\usepackage{epstopdf}
 \usepackage[most]{tcolorbox}
 \usepackage{fix-cm}
 \usepackage{cancel}
@@ -99,6 +100,9 @@
 \color{fg0}
 \pagecolor{bg0_s}
 \colorlet{shadecolor}{gbaqua2}
+
+\tikzstyle{mybox} = [draw=fg1,fill=bg0_s,very thick,rectangle,rounded corners, inner sep=10pt, inner ysep=10pt]
+\tikzstyle{fancytitle} = [draw=fg1,fill=gbaqua2,very thick,text=bg0_s,font=\bfseries,rounded corners]
 
 \setcounter{section}{20}
 \maketitle
@@ -237,7 +241,7 @@ Because of its similarity, this equation is also referred to as Coulomb's law. T
     \begin{tikzpicture}
         \filldraw[gbred] (0,0) circle (0.1);
         \draw[thick] (0,0) circle (0.1);
-        \draw[thin] (-0.07,0)--(0.07,0);
+        \draw[thin] (-0.06,0)--(0.06,0);
         \foreach \i in {0,45,90,...,315}{
             \draw[->,very thick,-latex] ({cos(\i)},{sin(\i)})--({0.2*cos(\i)},{0.2*sin(\i)});
             \draw[->,very thick,-latex] ({1.75*cos(\i)},{1.75*sin(\i)})--({1.1*cos(\i)},{1.1*sin(\i)});
@@ -248,6 +252,115 @@ Because of its similarity, this equation is also referred to as Coulomb's law. T
             \draw[->,very thick,-latex] ({1.6*cos(\j)},{1.6*sin(\j)})--({0.8*cos(\j)},{0.8*sin(\j)});
             \filldraw ({1.6*cos(\j)},{1.6*sin(\j)}) circle (0.05);
         }
+        \node at (0,-2.15){Field vectors for a negative point charge};
+    \end{tikzpicture}
+\end{center}
+\newpage
+\subsection{Fields of Charge Distribution}
+Since the electric force obeys the superposition principle, so does the electric field, meaning that the field of a charge distribution is the vector sum of the fields of the individual point charges making up the distribution:
+\begin{equation}
+    \vec{E} = \vec{E}_1 + \vec{E}_2 + \vec{E}_3 + ... = \sum_i \vec{E}_i = \sum_i \frac{kq_i}{r_i^2}\hat{r}_i
+\end{equation}
+In this equation, the $\vec{E}_i$'s are the electric fields of the point charges $q_i$ located at distance $r_i$ from the field point (point where the field is being evaluated). The unit vectors $\hat{r}_i$ point from each point charge toward the field point. In theory this equation gives the electric field of any charge distribution, although this is often complicated unless the distribution contains relatively few points.
+\begin{center}
+    \begin{tikzpicture}
+        \node[mybox,text=fg1](box){
+            \begin{minipage}{0.95\textwidth}
+                Two protons are 3.6 nm apart. Find the elctric field at a point between them, 1.2 nm from one of the protons. Then find the force on an electron at this point.
+                \begin{center}
+                    \begin{tikzpicture}
+                        \draw[<->,latex-latex] (-0.5,0)--(4.1,0) node[right]{$x$};
+                        \draw[->,thick,-latex,gbblue2] (0,0)--node[above,yshift=-2mm,text=fg1]{$\hat{r}_1$} (0.7,0);
+                        \draw[->,thick,-latex,gbblue2] (3.6,0)--node[above,yshift=-2mm,text=fg1]{$\hat{r}_2$} (2.9,0);
+
+                        \draw[<->,latex-latex] (0,-0.25)--(3.6,-0.25);
+                        \draw[thick,bg0_s] (1.2,-0.25)--(2.4,-0.25);
+                        \node at (1.8,-0.25) {\small 3.6 nm};
+
+                        \draw[<->,latex-latex] (0,-0.5)--node[below,yshift=2mm]{\small 1.2 nm}(1.2,-0.5);
+                        \draw[<->,latex-latex] (1.2,-0.5)--node[below,yshift=2mm]{\small 2.4 nm}(3.6,-0.5);
+
+                        \filldraw[gbblue2] (0,0) circle (0.15);
+                        \draw[thick] (0,0) circle (0.15);
+                        \draw (-0.09,0)--(0.09,0);
+                        \draw (0,-0.09)--(0,0.09);
+
+                        \filldraw[gbblue2] (3.6,0) circle (0.15);
+                        \draw[thick] (3.6,0) circle (0.15);
+                        \draw (3.51,0)--(3.69,0);
+                        \draw (3.6,-0.09)--(3.6,0.09);
+
+                        \filldraw (1.2,0) circle (0.04) node[above,yshift=-2mm]{$P$};
+                    \end{tikzpicture}
+                \end{center}
+                The field point $P$ is identified as being 1.2 nm from one proton. By letting the line between the protons define the $x$-axis, the unit vector $\hat{r}_1$ becomes $\ih$, and $\hat{r}_2$ becomes $-\ih$. 
+                \vspace{1mm}\\
+                The charge $q$ of both protons is the elementary charge $e$ and the charge of an electron is $-e$, evaluating using equation 4 gives
+                \begin{align*}
+                    \vec{E} &= \vec{E}_1 + \vec{E}_2 = \frac{k_e e}{r_1^2}\ih + \frac{k_e e}{r_2^2}(-\ih) = k_e e\left(\frac{1}{r_1^2} - \frac{1}{r_2^2}\right)\ih \\
+                    &= \left(8.99 \cdot 10^9\right)\left(1.6\cdot 10^{-19}\right)\left(\frac{1}{1.2^2} - \frac{1}{2.4^2}\right)\ih = 750\ih \text{ MN}\;\text{C}^{-1}\\
+                    \vec{F} &= q\vec{E} = -e\vec{E} = \left(-1.6\cdot 10^{-19}\right)\left(7.5\cdot 10^{8}\right) = -1.2\cdot 10^{-10}\ih \text{ N}
+                \end{align*}
+                Therefore, the force on an electron at point $P$ is 0.12 nN in the $-\ih$ direction.
+            \end{minipage}
+        };
+        \node[fancytitle,right=10pt] at (box.north west) {Example: Field From Two Protons};
+    \end{tikzpicture}
+\end{center}
+
+\newpage
+\noindent\bf{The Electric Dipole}
+\vspace{1mm}\\
+The electric dipole is one of the most important charge distribution and consists of two point charges of equal magnitude and opposite sign. Many molecules have dipoles, which makes them essential in explaining molecular behavior.
+\begin{center}
+    \includegraphics{tikz/ch20figures/H2O-dipole.eps}
+\end{center}
+The net charge of a water molecule is 0 however, due to the different electronegativities of oxygen and hydrogen, a dipole is formed from partial positive/negative charges.
+
+\begin{center}
+    \begin{tikzpicture}
+        \node[mybox,text=fg1] (box) {
+            \begin{minipage}{0.95\textwidth}
+                A molecule may be approximately modeled as a positive charge $q$ at $x = a$ and a negative charge $-a$ at $x  = -a$. Evaluate the electric field on the $y$-axis, and find an approximate expression valid at large distances ($|y| \gg a$).
+                \begin{center}
+                    \begin{tikzpicture}[scale=1.75]
+                        \draw[<->,latex-latex] (-1,0)--(1,0) node[right,xshift=-2mm]{$x$};
+                        \draw[->,-latex] (0,-0.25)--(0,1.5) node[above,yshift=-2mm]{$y$};
+                        \draw[dashed,thin,fg3] (-0.5,0)--(0,0.9)--(0.5,0);
+                        
+                        \filldraw[gbred] (-0.5,0) circle (0.1);
+                        \draw (-0.5,0) circle (0.1);
+                        \draw[thin] (-0.55,0)--(-0.45,0);
+
+                        \filldraw[gbblue2] (0.5,0) circle (0.1);
+                        \draw (0.5,0) circle (0.1);
+                        \draw[thin] (0.55,0)--(0.45,0);
+                        \draw[thin] (0.5,0.05)--(0.5,-0.05);
+
+                        \draw[->,thick,-latex,gbblue2] (0,0.9)--({-0.5*cos(60.945)},{0.9 + 0.5*sin(60.945)}) node[left,yshift=2mm,xshift=5mm,text=fg1]{$\vec{E}_{+}$};
+                        \draw[->,thick,-latex,gbblue2] (0,0.9)--({-0.5*cos(60.945)},{0.9 - 0.5*sin(60.945)}) node[left,yshift=4.5mm,xshift=5mm,text=fg1]{$\vec{E}_{-}$};
+                        \draw[->,thick,-latex,gbblue2] (0,0.9)--(-0.5,0.9) node[left,text=fg1,xshift=2mm]{$\vec{E}$};
+                        \filldraw (0,0.9) circle (0.025);
+                        \node at (-0.5,0.45) {$r$};
+                        \node at (0.5,0.45) {$r$};
+                        \node at (-0.7,0.2) {$-q$};
+                        \node at (0.7,0.2) {$q$};
+                    \end{tikzpicture}
+                \end{center}
+                The individual unit vectors point from the two charges toward the field point. The negative charge contributes a field opposite its unit vector; individual fields are indicated. Symmetry makes the $y$-components cancel, giving a field in the $-x$ direction, so only the $x$-components of the unit vectors are needed.
+                \vspace{1mm}\\
+                These are $\hat{r}_{x^-} = \sfrac{a}{r}$ for the negative charge at $x = -a$ and $\hat{r}_{x^+} = -\sfrac{a}{r}$ for the positive charge at $x = a$. \\
+                When evaluated using equation 4:
+                \begin{align*}
+                    \vec{E} = \frac{k_e(-q)}{r^2}\left(\frac{a}{r}\right)\ih + \frac{k_eq}{r^2}\left(-\frac{a}{r}\right)\ih = -\frac{2k_eqa}{(a^2 + y^2)^{\sfrac{3}{2}}}
+                \end{align*}
+                In the last step the substitution $r = \sqrt{a^2 + y^2}$ is used. For $|y| \gg a$, $a^2$ can be neglected compared with $y^2$, giving
+                \begin{align*}
+                    \vec{E} = -\frac{2k_eqa}{|y|^3}\ih \hspace{5mm} (|y| \gg a)
+                \end{align*}
+            \end{minipage}
+        };
+        \node[fancytitle,right=10pt] at (box.north west) {Example: Electric Dipole - Modeling a Molecule};
     \end{tikzpicture}
 \end{center}
 
