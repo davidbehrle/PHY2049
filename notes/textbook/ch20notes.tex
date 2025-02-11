@@ -7,7 +7,6 @@
 \usepackage{gensymb}
 \usepackage{physics}
 \usepackage{graphicx}
-\usepackage[colorinlistoftodos]{todonotes}
 \usepackage{xcolor}
 \usepackage{array}
 \usepackage{tabularx}
@@ -22,6 +21,7 @@
 \usepackage{pagecolor}
 \usepackage[margin=0.5in]{geometry}
 \usetikzlibrary{quotes,angles}
+\usetikzlibrary{arrows.meta,arrows}
 \usetikzlibrary{decorations.pathreplacing}
 \usetikzlibrary{calc}
 \usetikzlibrary{external}
@@ -29,6 +29,7 @@
 \usepgfplotslibrary{fillbetween}
 
 \let\phi\varphi
+\let\epsilon\varepsilon
 \let\bf\textbf
 \let\la\langle
 \let\ra\rangle
@@ -266,7 +267,7 @@ In this equation, the $\vec{E}_i$'s are the electric fields of the point charges
     \begin{tikzpicture}
         \node[mybox,text=fg1](box){
             \begin{minipage}{0.95\textwidth}
-                Two protons are 3.6 nm apart. Find the elctric field at a point between them, 1.2 nm from one of the protons. Then find the force on an electron at this point.
+                Two protons are 3.6 nm apart. Find the electric field at a point between them, 1.2 nm from one of the protons. Then find the force on an electron at this point.
                 \begin{center}
                     \begin{tikzpicture}
                         \draw[<->,latex-latex] (-0.5,0)--(4.1,0) node[right]{$x$};
@@ -298,7 +299,7 @@ In this equation, the $\vec{E}_i$'s are the electric fields of the point charges
                 The charge $q$ of both protons is the elementary charge $e$ and the charge of an electron is $-e$, evaluating using equation 4 gives
                 \begin{align*}
                     \vec{E} &= \vec{E}_1 + \vec{E}_2 = \frac{k_e e}{r_1^2}\ih + \frac{k_e e}{r_2^2}(-\ih) = k_e e\left(\frac{1}{r_1^2} - \frac{1}{r_2^2}\right)\ih \\
-                    &= \left(8.99 \cdot 10^9\right)\left(1.6\cdot 10^{-19}\right)\left(\frac{1}{1.2^2} - \frac{1}{2.4^2}\right)\ih = 750\ih \text{ MN}\;\text{C}^{-1}\\
+                    &= \left(8.99 \cdot 10^9\right)\left(1.6\cdot 10^{-19}\right)\left(\frac{1}{1.2^2} - \frac{1}{2.4^2}\right)\ih = 750\;\ih \text{ MN}\;\text{C}^{-1}\\
                     \vec{F} &= q\vec{E} = -e\vec{E} = \left(-1.6\cdot 10^{-19}\right)\left(7.5\cdot 10^{8}\right) = -1.2\cdot 10^{-10}\ih \text{ N}
                 \end{align*}
                 Therefore, the force on an electron at point $P$ is 0.12 nN in the $-\ih$ direction.
@@ -361,6 +362,94 @@ The net charge of a water molecule is 0 however, due to the different electroneg
             \end{minipage}
         };
         \node[fancytitle,right=10pt] at (box.north west) {Example: Electric Dipole - Modeling a Molecule};
+    \end{tikzpicture}
+\end{center}
+The dipole field at large distances decreases as the inverse cube of distance $(\vec{E} \propto \sfrac{1}{r^3})$. This is because the net charge of the dipole is 0, its field comes entirely from the separation of opposite charges. Because of this, the dipole field is not exactly zero, but it weaker and more localized than that of a point charge. At large distances, a dipole's electric properties are entirely characterized by its dipole moment $p$, which is defined as the product of its charge $q$ and the distance $d$ between the charges.
+\begin{equation}
+    p = qd
+\end{equation}
+In the above example, $d = 2a$, so the dipole moment was $p = 2qa$. The field can be written in terms of the dipole moment:
+\begin{align}
+    \begin{split}
+        \vec{E} = -\frac{k_ep}{|y|^3}\ih \\
+        \vec{E} = \frac{2k_ep}{|x|^3}\ih 
+    \end{split}
+\end{align}
+These equations show that the field along the axis of the dipole at a given distance is twice as strong as along the bisector.
+
+\newpage
+\noindent\bf{Continuous Charge Distributions}
+\vspace{1mm}\\
+If the charge distribution extends throughout a volume, it is described in terms of volume charge density $\rho$ with units C$\;$m$^{-3}$. For charge distributions spread over lines or surfaces, surface charge density $\sigma$ (C$\;$m$^{-2}$), and linear charge density $\lambda$ (C$\;$m$^{-1}$) are used. To calculate the field of a continuous distribution, the charged region is divided into infinitesimal charge elements $dq$. Each $dq$ produces a field $d\vec{E}$ ($d\vec{E} = \frac{k_edq}{r^2}\hat{r}$), the sum of all the $d\vec{E}$'s is the integral
+\begin{equation}
+    \vec{E} = \int d\vec{E} = \int \frac{k_edq}{r^2}\hat{r}
+\end{equation}
+\begin{center}
+    \begin{tikzpicture}
+        \node[mybox,text=fg1] (box) {
+            \begin{minipage}{0.95\textwidth}
+                A ring of radius $a$ has a charge $Q$ distributed evenly over the ring. Find an expression for the electric field at any point on the axis of the ring.
+                \vspace{1mm}\\
+                Take the $x$-axis to coincide with the ring axis with the center of the ring at $x = 0$. The $y$-components of the field contributions from pairs of charge elements on opposite sides of the ring cancel so the net field points in the $+x$ direction (for $x > 0$), and only the $x$-components of the unit vectors are needed, namely, $\hat{r}_x = r\cos(\theta) = \frac{x}{r}$
+                \begin{center}
+                    \begin{tikzpicture}[scale=1.75]
+                        \filldraw[gbred] (0.029,0.9)--(0.029,1.1)--(-0.029,1.1)--(-0.029,0.9);
+                        \filldraw[gbred] (0.029,1.1)--(0.029,0.9)--(-0.029,0.9)--(-0.029,1.1);
+                        \filldraw[gbred] (0.029,-0.9)--(0.029,-1.1)--(-0.029,-1.1)--(-0.029,-0.9);
+                        \filldraw[gbred] (0.029,-1.1)--(0.029,-0.9)--(-0.029,-0.9)--(-0.029,-1.1);
+                        \draw[densely dashed,fg3] (0,0)--(0,-0.33);
+                        \draw[densely dashed,fg3] (2,0)--(2,-0.33);
+                        \draw[thick] (0,0) ellipse (0.55 and 1.1);
+                        \draw[thick] (0,0) ellipse (0.4 and 0.9);
+                        \filldraw (0,0) circle (0.04) coordinate (o);
+                        \draw (-0.03,1.1)--(-0.03,0.9);
+                        \draw (0.03,1.1)--(0.03,0.9);
+                        \draw (-0.03,-1.1)--(-0.03,-0.9);
+                        \draw (0.03,-1.1)--(0.03,-0.9);
+                        \draw (0,1) coordinate (a) node[above]{$dq$};
+                        \draw (0,-1) coordinate (b) node[above]{$dq$};
+                        \draw[<->,latex-latex] (0,0.04)--node[left,xshift=2mm]{$a$}(0,0.9);
+                        \draw (-0.6,0)--(-0.55,0);
+                        \draw (-0.4,0)--(o);
+
+                        \draw (2,0) coordinate (P);
+
+                        \draw ({2 + 0.75*cos(26.565)},{0.75*sin(-26.565)}) coordinate (c);
+                        \draw ({2 + 0.75*cos(26.565)},{0.75*sin(-26.565)}) coordinate (c);
+                        \draw (3,0) coordinate (d);
+                        \draw pic["$\theta$",draw=fg1,-,thick,angle eccentricity=1.5,angle radius=6mm]{angle=c--P--d};
+                        \draw[<->,latex-latex] (0,-0.25)--node[above,yshift=-2.7mm]{$x$}(2,-0.25);
+
+                        \draw[->,-latex,thick,gbblue2] (2,0)--({2 + 0.75*cos(26.565)},{0.75*sin(26.565)});
+                        \draw[->,-latex,thick,gbblue2] (2,0)--({2 + 0.75*cos(26.565)},{0.75*sin(-26.565)});
+                        \draw[->,-latex,thick,gbblue2] (2,0)--(3,0) node[right,xshift=-2.5mm,text=fg1]{$dE_x$};
+                        
+                        \draw (o)--(P);
+                        \draw[dashed,fg3] (a)--(P)--(b);
+                        \filldraw (P) circle (0.04) node[above,yshift=-2mm]{$P$};
+
+                        \draw pic["$\theta$",draw=fg1,-,thick,angle eccentricity=1.5,angle radius=6mm]{angle=a--P--o};
+
+                        \draw[->,-latex,thick,gbblue2] (a)--node[above,text=fg1,yshift=-1mm]{$\hat{r}$}({0.75*cos(26.565)},{1 - 0.75*sin(26.565)});
+                        \draw[->,-latex,thick,gbblue2] (0,-1)--node[below,text=fg1,yshift=1mm]{$\hat{r}$}({0.75*cos(26.565)},{0.75*sin(26.565) - 1});
+                        
+                        \node[rotate=-26.565] at (1.25,0.6) {$r = \sqrt{x^2 + a^2}$};
+                        \node[below,yshift=3mm] at (c) {$d\vec{E}$};
+                        \node[above,yshift=-2.5mm] at ({2 + 0.75*cos(26.565)},{0.75*sin(26.565)}) {$d\vec{E}$};
+                    \end{tikzpicture}
+                \end{center}
+                Each charge element $dq$ contributes the same amount to the field, $\displaystyle dE_x = \frac{k_edq}{r^2}\hat{r}_x = \frac{k_exdq}{r^3}$\\
+                Writing $\displaystyle r = \sqrt{x^2 + a^2}$ as $(x^2 + a^2)^{\sfrac{1}{2}}$, the integral becomes
+                \begin{align*}
+                    E = \int\limits_{\text{ring}} dE_x = \int\limits_{\text{ring}} \frac{k_ex\; dq}{(x^2 + a^2)^{\sfrac{3}{2}}} = \frac{k_ex}{(x^2 + a^2)^{\sfrac{3}{2}}} \int\limits_{\text{ring}} dq
+                \end{align*}
+                Because the field point $P$ is fixed, its coordinate $x$ is a constant in the integration. The remaining integral is the sum of all the charge elements on the ring, the total charge $Q$.
+                \begin{align*}
+                    E = \frac{k_eQx}{(x^2 + a^2)^{\sfrac{3}{2}}}
+                \end{align*}
+            \end{minipage}
+        };
+        \node[fancytitle,right=10pt] at (box.north west) {Example: Evaluating The Field - A Charged Ring};
     \end{tikzpicture}
 \end{center}
 
