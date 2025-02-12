@@ -375,24 +375,26 @@ In the above example, $d = 2a$, so the dipole moment was $p = 2qa$. The field ca
         \vec{E} = \frac{2k_ep}{|x|^3}\ih 
     \end{split}
 \end{align}
-These equations show that the field along the axis of the dipole at a given distance is twice as strong as along the bisector.
+These equations show that the field along the axis of the dipole at a given distance is twice as strong as along the bisector. 
+\vspace{1mm} \\
 
-\newpage
 \noindent\bf{Continuous Charge Distributions}
 \vspace{1mm}\\
 If the charge distribution extends throughout a volume, it is described in terms of volume charge density $\rho$ with units C$\;$m$^{-3}$. For charge distributions spread over lines or surfaces, surface charge density $\sigma$ (C$\;$m$^{-2}$), and linear charge density $\lambda$ (C$\;$m$^{-1}$) are used. To calculate the field of a continuous distribution, the charged region is divided into infinitesimal charge elements $dq$. Each $dq$ produces a field $d\vec{E}$ ($d\vec{E} = \frac{k_edq}{r^2}\hat{r}$), the sum of all the $d\vec{E}$'s is the integral
 \begin{equation}
     \vec{E} = \int d\vec{E} = \int \frac{k_edq}{r^2}\hat{r}
 \end{equation}
+
+\newpage
 \begin{center}
     \begin{tikzpicture}
         \node[mybox,text=fg1] (box) {
             \begin{minipage}{0.95\textwidth}
                 A ring of radius $a$ has a charge $Q$ distributed evenly over the ring. Find an expression for the electric field at any point on the axis of the ring.
                 \vspace{1mm}\\
-                Take the $x$-axis to coincide with the ring axis with the center of the ring at $x = 0$. The $y$-components of the field contributions from pairs of charge elements on opposite sides of the ring cancel so the net field points in the $+x$ direction (for $x > 0$), and only the $x$-components of the unit vectors are needed, namely, $\hat{r}_x = r\cos(\theta) = \frac{x}{r}$
+                Take the $x$-axis to coincide with the ring axis with the center of the ring at $x = 0$. The $y$-components of the field contributions from pairs of charge elements on opposite sides of the ring cancel so the net field points in the $+x$ direction (for $x > 0$), and only the $x$-components of the unit vectors are needed, namely, $\hat{r}_x = \cos(\theta) = \frac{x}{r}$
                 \begin{center}
-                    \begin{tikzpicture}[scale=1.75]
+                    \begin{tikzpicture}[scale=1.6]
                         \filldraw[gbred] (0.029,0.9)--(0.029,1.1)--(-0.029,1.1)--(-0.029,0.9);
                         \filldraw[gbred] (0.029,1.1)--(0.029,0.9)--(-0.029,0.9)--(-0.029,1.1);
                         \filldraw[gbred] (0.029,-0.9)--(0.029,-1.1)--(-0.029,-1.1)--(-0.029,-0.9);
@@ -452,5 +454,83 @@ If the charge distribution extends throughout a volume, it is described in terms
         \node[fancytitle,right=10pt] at (box.north west) {Example: Evaluating The Field - A Charged Ring};
     \end{tikzpicture}
 \end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+        \node[mybox,text=fg1](box){
+            \begin{minipage}{0.95\textwidth}
+                A long, straight electric power line coincides with the $x$-axis and carries a uniform line charge density $\lambda$ (unit = C$\;$m$^{-1}$). Find the electric field on the $y$-axis using the approximation that the wire is infinitely long. \\
+                The field point $P$ is placed along the $y$-axis and the wire is divided into infinitesimal charge elements $dq$. The $x$-components of the fields $d\vec{E}$ contributed by elements $dq$ on opposite sides of the $y$-axis cancel, so only the $y$-components of each unit vector are needed. $\hat{r}_y = \sin(\theta) = \sfrac{y}{r}$ where $r = \sqrt{x^2 + y^2}$
+                \begin{center}
+                    \begin{tikzpicture}[scale=1.5]
+                        \draw[<->,latex-latex] (0,-0.25)--node[below,yshift=2mm]{$x$}(1,-0.25);
+                        
+                        \draw (0,0.75) coordinate (P);
+                        \draw[->,-latex,thick,gbblue2] (P)--({0.5*cos(143.13)},{0.75 + 0.5*sin(143.13)}) node[left,text=fg1,xshift=2.5mm]{$d\vec{E}$};
+                        \draw[->,-latex,thick,gbblue2] (P)--({-0.5*cos(143.13)},{0.75 + 0.5*sin(143.13)}) node[right,text=fg1,xshift=-2.5mm]{$d\vec{E}$};
+                        \draw[dashed,fg3] (1,0)--(P)--(-1,0);
+                        \draw[->,-latex,thick,gbblue2] (P)--(0,1.35) node[above,yshift=-3mm,text=fg1]{$dE_y$};
+                        \filldraw (P) circle (0.05) node[left,xshift=1mm]{$P$};
+
+                        \draw[->,-latex,thick,gbblue2] (1,0)--({1 + 0.5*cos(143.13)},{0.5*sin(143.13)}) node[above,yshift=-3mm,xshift=2mm,text=fg1]{$\hat{r}$};;
+                        \draw[->,-latex,thick,gbblue2] (-1,0)--({-0.5*cos(143.13) - 1},{0.5*sin(143.13)}) node[above,yshift=-3mm,xshift=-2mm,text=fg1]{$\hat{r}$};
+                        \node at (1,0.7){$r = \sqrt{x^2 + y^2}$};
+
+                        \draw[ultra thick,gbred] (1.025,-0.1)--(1.025,0) node[above,text=fg1,yshift=-3mm,xshift=1.5mm]{$dq$};
+                        \draw[thin] (1,0)--(1,-0.1);
+                        \draw[thin] (1.05,0)--(1.05,-0.1);
+                        \draw[ultra thick,gbred] (-1.025,-0.1)--(-1.025,0) node[above,text=fg1,yshift=-3mm,xshift=-1.5mm]{$dq$};
+                        \draw[thin] (-1,0)--(-1,-0.1);
+                        \draw[thin] (-1.05,0)--(-1.05,-0.1);
+
+                        \draw (-1.5,0)--(1.5,0);
+                        \draw (-1.5,-0.1)--(1.5,-0.1);
+                        \draw (0,-0.5)--(0,0.75);
+                        \draw[<->,latex-latex] (-0.1,0)--node[left,xshift=2mm,yshift=-1mm]{$y$}(-0.1,0.7);
+                    \end{tikzpicture}
+                \end{center}
+                The wire has charge density $\lambda$ C$\;$m$^{-1}$, so if a charge element has length $dx$, its charge is $dq = \lambda dx$
+                \begin{align*}
+                    dE_y = \frac{k_edq}{r^2}\hat{r} = \frac{k_e\lambda dx}{r^2} \frac{y}{r} = \frac{k\lambda y}{(x^2 + y^2)^{\sfrac{3}{2}}}dx
+                \end{align*}
+                Where $r = \sqrt{x^2 + y^2}$. Since the $x$-components cancel, the $y$-components can be integrated to get the net field
+                \begin{align*}
+                    E = E_y &= \int_{-\infty}^{\infty} \frac{k_e\lambda y}{(x^2 + y^2)^{\sfrac{3}{2}}}dx = k_e\lambda y \int_{-\infty}^{\infty} \frac{1}{(x^2 + y^2)^{\sfrac{3}{2}}}dx \\
+                    &= k_e\lambda y \left[\frac{x}{y^2\sqrt{x^2 + y^2}}\right]_{-\infty}^{\infty} = k_e\lambda y \left[\frac{1}{y^2}-\left(\frac{1}{y^2}\right)\right] = \frac{2k_e\lambda}{y}
+                \end{align*}
+                The result is the field's magnitude in the radial direction away from the wire for $+\lambda$ and toward the wire for $-\lambda$
+            \end{minipage}
+        };
+        \node[fancytitle,right=10pt] at (box.north west){Example: Line Charge - A Power Line's Field};
+    \end{tikzpicture}
+\end{center}
+
+\subsection{Matter in Electric Fields}
+The definition of the electric field governs the motion of a single charge in an electric field. Combining the equation $\vec{F} = q\vec{E}$ and Newton's law $\vec{F} = m\vec{a}$ gives the acceleration of a particle with charge $q$ and mass $m$ in an electric field $\vec{E}$.
+\begin{equation}
+    \vec{a} = \frac{q\vec{E}}{m}
+\end{equation}
+The charge to mass ratio $\frac{q}{m}$ of a particle determines its response to an electric field. When the electric field is uniform, problems involving the motion of charged particles reduce to constant acceleration problems from physics I.
+\begin{center}
+    \begin{tikzpicture}
+        \node[mybox,text=fg1](box){
+            \begin{minipage}{0.95\textwidth}    
+                Two oppositely charged, curved metal plates establish an electric field given by $E = E_0\frac{b}{r}$ where $E_0$ and $b$ are constants representing the electric field and length respectively. The field points toward the center of curvature, and $r$ is the distance from the center.
+                \vspace{1mm} \\
+                Find an expression for the speed $v$ with which a proton entering vertically from below will leave the device moving horizontally. \\
+                Here, we want uniform circular motion so equation 8 is written with the given field and $\displaystyle a = \frac{v^2}{r}$.
+                \begin{align*}
+                    a = \frac{v^2}{r} = \frac{eE}{m} = \frac{eE_0b}{mr}
+                \end{align*}
+                Solving for $v$ gives:
+                \begin{align*}
+                    v^2 = \frac{eE_0b}{m} \hspace{10mm} v = \sqrt{\frac{eE_0b}{m}}
+                \end{align*}
+            \end{minipage}
+        };
+        \node[fancytitle,right=10pt] at (box.north west) {Example: Particle Motion - Electrostatic Analyzer};
+    \end{tikzpicture}
+\end{center}
+\bf{Dipoles in Electric Fields}
 
 \end{document}
